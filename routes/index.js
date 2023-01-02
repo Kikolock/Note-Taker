@@ -1,10 +1,10 @@
-const express = require('express');
+// const express = require('express');
 
-//Import routers for /api
-const apiRoutes = require('./apiRoutes');
+// //Import routers for /api
+// const apiRoutes = require('./apiRoutes');
 
-const app = express();
+// const app = express();
 
-app.use('/api', apiRoutes);
+// app.use('/api', apiRoutes);
 
-module.exports = app
+// module.exports = app

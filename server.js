@@ -1,6 +1,6 @@
 const express = require('express');
-const api = require('./routes/index.js');
-const htmlRoutes = require('./routes/htmlRoutes.js');
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 
 
 
@@ -10,8 +10,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api)
-app.use('/', htmlRoutes)
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 app.use(express.static('public'));
 

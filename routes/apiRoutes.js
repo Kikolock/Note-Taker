@@ -4,12 +4,12 @@ const fs = require('fs');
 const uuid = require('../helpers/uuid.js');
 
 //API
-router.get('/api/notes', (req, res) => {
+router.get('/notes', (req, res) => {
     console.info(`${req.method} request received for notes`);
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
   });
   
-  router.post('/api/notes', (req, res) => {
+  router.post('/notes', (req, res) => {
     console.info(`${req.method} request received to add new note`);
     console.log(req.body);
   
@@ -37,7 +37,7 @@ router.get('/api/notes', (req, res) => {
     }
   });
   
-  router.delete('/api/notes/:id', (req, res) => {
+  router.delete('/notes/:id', (req, res) => {
     let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     let noteId = req.params.id.toString();
   
