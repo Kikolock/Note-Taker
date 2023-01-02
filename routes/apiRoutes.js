@@ -1,17 +1,15 @@
-const express = require('express');
+const router = require('express').Router();
+const { readFromFile, readAndAppend } = require('../helpers/fsUtils.js');
+const fs = require('fs');
+const uuid = require('../helpers/uuid.js');
 
-const { readFromFile, readAndAppend } = require(`../helpers/fsUtils`);
-const fs = require(`fs`);
-const uuid = require(`../helpers/uuid`);
-
-const app = express();
-
-app.get(`/api/notes`, (req, res) => {
+//API
+router.get('/api/notes', (req, res) => {
     console.info(`${req.method} request received for notes`);
-    readFromFile(`../db/db.json`).then((data) => res.json(JSON.parse(data)));
+    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
   });
   
-  app.post(`/api/notes`, (req, res) => {
+  router.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add new note`);
     console.log(req.body);
   
@@ -23,9 +21,10 @@ app.get(`/api/notes`, (req, res) => {
         text,
         id: uuid(),
       };
+      
       console.log(newNote);
       
-      readAndAppend(newNote, `../db/db.json`);
+      readAndAppend(newNote, './db/db.json');
   
       const response = {
         status: `success`,
@@ -38,17 +37,16 @@ app.get(`/api/notes`, (req, res) => {
     }
   });
   
-  app.delete("/api/notes/:id", (req, res) => {
-    let notes = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));
+  router.delete('/api/notes/:id', (req, res) => {
+    let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
     let noteId = req.params.id.toString();
   
     notes = notes.filter((dltNote) => {
       return dltNote.id != noteId;
     });
   
-    fs.writeFileSync("../db/db.json", JSON.stringify(notes));
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
     res.json(notes);
   });
-
   
-  module.exports = app;
+  module.exports = router;
