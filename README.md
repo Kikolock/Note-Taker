@@ -55,7 +55,8 @@
 
   ## Walkthrough Video
 
-  Link: 
+  Link Code: https://github.com/Kikolock/Note-Taker/blob/main/video/server.js%20-%20Challenge%2011%20(Note%20Taker)%20-%20Visual%20Studio%20Code%202023-01-03%2010-12-00.mp4
+  Link Deployed page: https://github.com/Kikolock/Note-Taker/blob/main/video/Kikolock_Note-Taker%20-%20Google%20Chrome%202023-01-03%2010-13-19.mp4
 
   ## Deployed Website
 
